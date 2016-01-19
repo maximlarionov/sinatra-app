@@ -68,29 +68,29 @@
             <div class="clearer"></div>
             <div class="btn-container m60">
               <div class="col-md-12">
-                <form autocomplete="off" id="feedback-form">
+                <form autocomplete="off" id="feedback-form" action="sendmail" method="post">
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                      <input type="text" name="nameFF" class="form-control wow bounceInLeft" placeholder="Имя">
-                      <input type="text" name="phoneFF" class="form-control wow bounceInLeft" placeholder="Телефон">
+                      <input type="text" name="name" class="form-control wow bounceInLeft" placeholder="Имя">
+                      <input type="text" name="phone" class="form-control wow bounceInLeft" placeholder="Телефон">
                     </div>
                     <div class="col-md-4">
-                      <input type="text" name="emailFF" class="form-control wow bounceInLeft" placeholder="Email">
-                      <input type="text" name="companyFF" class="form-control wow bounceInLeft" placeholder="Компания/сайт">
+                      <input type="text" name="email" class="form-control wow bounceInLeft" placeholder="Email">
+                      <input type="text" name="company" class="form-control wow bounceInLeft" placeholder="Компания/сайт">
                     </div>
                     <div class="col-md-2"></div>
                   </div>
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
-                      <textarea class="form-control wow bounceInLeft" name="messageFF" rows="4" placeholder="Суть вопроса"></textarea>
+                      <textarea class="form-control wow bounceInLeft" name="message" rows="4" placeholder="Суть вопроса"></textarea>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
                   <div class="row">
                     <div class="btn-container col-md-10 text-center submit" style="margin-left: 35px;">
-                      <a type="submit" form="feedback-form" href="#" class="wow bounceInLeft" style="margin-left: 65%">Отправить запрос</a>
+                      <a onclick="document.getElementById('feedback-form').submit(); return false;" class="wow bounceInLeft" style="margin-left: 65%"> Отправить запроc </a>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
