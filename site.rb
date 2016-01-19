@@ -34,6 +34,29 @@ get '/en-contacts.html' do
 end
 
 post '/sendmail' do
+  if ENV['CI']
+    Pony.options = {
+      :via => :smtp,
+      :via_options => {
+        :address => 'smtp.sendgrid.net',
+        :port => '587',
+        :domain => 'heroku.com',
+        :user_name => ENV['SENDGRID_USERNAME'],
+        :password => ENV['SENDGRID_PASSWORD'],
+        :authentication => :plain,
+        :enable_starttls_auto => true
+      }
+    }
+  else
+    Pony.options = {
+      :via => :sendmail,
+      :via_options => {
+        :location  => '/usr/sbin/sendmail', # defaults to 'which sendmail' or '/usr/sbin/sendmail' if 'which' fails
+        :arguments => '-t' # -t and -i are the defaults
+      }
+    }
+  end
+
   Pony.mail(
     :to => params[:email],
     :from => params[:email],
@@ -43,12 +66,6 @@ post '/sendmail' do
               Contacts: \n
                 Phone: #{params[:phone]} \n
                 Company: #{params[:company]}",
-
-    :via => :sendmail,
-    :via_options => {
-      :location  => '/usr/sbin/sendmail', # defaults to 'which sendmail' or '/usr/sbin/sendmail' if 'which' fails
-      :arguments => '-t' # -t and -i are the defaults
-    }
   )
 
   redirect back
